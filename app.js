@@ -30,3 +30,35 @@ function adicionarAmigo() {
     //focar no campo de entrada
     inputAmigo.focus();
 }
+
+
+// função para atualizar a lista
+function atualizarLista() {
+    const listaAmigos = document.getElementById("listaAmigos");
+    listaAmigos.innerHTML = "";
+
+    //ordenar a lista de amigos
+    amigos.sort();
+
+    for (let i = 0; i < amigos.length; i++) {
+        const li = document.createElement('li');
+        li.textContent = amigos[i];
+
+        //adicionar botão de remoção
+        const button = document.createElement('button');
+        button.textContent = 'Remover';
+        button.addEventListener('click', () => removerAmigo(i));
+        li.appendChild(button);
+
+        listaAmigos.appendChild(li);
+    }
+
+    //atualizar status do botão de sorteio
+    atualizarBotaoSorteio();
+}
+
+//Função para remover o amigo 
+function removerAmigo(index) {
+    amigos.splice(index, 1);
+    atualizarLista();
+}
