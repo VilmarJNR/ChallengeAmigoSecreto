@@ -62,3 +62,28 @@ function removerAmigo(index) {
     amigos.splice(index, 1);
     atualizarLista();
 }
+
+//Função para selecionar o amigo 
+function sortearAmigo() {
+    //olhar se a lista não esta vazia
+    if (amigos.length === 0) {
+        alert("Não tem amigos disponiveis para o sorteio. Adicione um amigo!");
+        return;
+    }
+
+    //Sortear um numero aleatorio
+    const aleatorio = Math.floor(Math.random() * amigos.length);
+
+    //ver o nome do sorteado
+    const amigoSorteado = amigos[aleatorio];
+
+    //Mostrar o resultado
+    const resultado = document.getElementById('resultado');
+    resultado.innerHTML = `Amigo sorteado: <strong> ${amigoSorteado} </strong>`;
+}
+
+//função para atualizar o status do botão de sorteio
+function atualizarBotaoSorteio() {
+    const botaoSortear = document.getElementById('sortear');
+    botaoSortear.disabled = amigos.length === 0;
+}
